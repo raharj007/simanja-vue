@@ -1,0 +1,13 @@
+  
+version: '3.1'
+services:
+  vue-ui:
+    build:
+      context: ./application
+      dockerfile: Dockerfile-dev
+    ports:
+      - "8080:8080"
+    container_name: simanja-vue
+    volumes:
+       - ./application:/usr/src/app/my-app
+       - /usr/src/app/my-app/node_modules

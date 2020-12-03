@@ -5,6 +5,7 @@
       color="primary"
       dark
     >
+
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -32,14 +33,19 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
+        <span class="mr-2">Simanja UI</span>
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
-
+    <v-navigation-drawer app>
+      Side Menu
+    </v-navigation-drawer>
     <v-main>
       <HelloWorld/>
     </v-main>
+     <v-footer app>
+      Footer
+    </v-footer>
   </v-app>
 </template>
 

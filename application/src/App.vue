@@ -1,30 +1,34 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title>SIMANJA</v-toolbar-title>
-    </v-app-bar>
-    <v-navigation-drawer app> Side Menu </v-navigation-drawer>
-    <v-main>
-      <HelloWorld />
-    </v-main>
-    <v-footer app> Footer </v-footer>
+    <Bar/>
+    <Navigation/>
+    <MainContent/>
+    <Footer/>
+    <SnackBar/>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
 
+import Navigation from "@/components/core/Navigation";
+import MainContent from "@/components/core/MainContent";
+import Footer from "@/components/core/Footer";
+import SnackBar from "@/components/core/Snackbar";
+import Bar from "@/components/core/Bar";
 export default {
   name: "App",
-
   components: {
-    HelloWorld,
+    SnackBar,
+    Bar,
+    Footer,
+    MainContent,
+    Navigation
   },
-
   data: () => ({
     //
   }),
+  created() {
+    // this.$router.push("/login").catch(() => {});
+  }
 };
 </script>

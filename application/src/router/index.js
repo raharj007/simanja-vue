@@ -13,12 +13,12 @@ const routes = [
   {
     path: "/data/absensi",
     name: "Absensi",
-    component: () => import("../views/absensi/Absensi")
+    component: () => import("../views/database/absensi/Absensi")
   },
   {
     path: "/data/jamaah",
     name: "Jamaah",
-    component: () => import("../views/jamaah/Jamaah")
+    component: () => import("../views/database/jamaah/Jamaah")
   },
   {
     path: "/setup/desa",

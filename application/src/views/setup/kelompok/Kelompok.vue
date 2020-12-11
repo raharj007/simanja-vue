@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations} from "vuex";
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import {mapMutations} from "vuex";
 
 export default {
   name: "Kelompok",
@@ -25,7 +25,6 @@ export default {
       'setDefaultItem',
       'dtStateClear',
     ]),
-    ...mapGetters('dtablecrud', ['getEditedItem']),
   },
   created() {
     this.dtStateClear();
@@ -36,9 +35,6 @@ export default {
       {text: 'Deskripsi', value: 'nama'},
       {text: 'Actions', value: 'actions', sortable: false},
     ]);
-    // this.setInput([
-    //   {model: this.getEditedItem().}
-    // ]);
     this.setEditedItem({nama: ''});
     this.setDefaultItem({nama: ''});
   }

@@ -11,6 +11,7 @@
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
 import {mapGetters, mapMutations} from "vuex";
+
 export default {
   name: "Desa",
   components: {DatatableCRUD},

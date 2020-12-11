@@ -124,6 +124,32 @@ export default {
           },
         ]
       },
+      {
+        title: "Setup",
+        icon: "mdi-archive",
+        group: "setup",
+        roles: ["admin"],
+        items: [
+          {
+            icon: "mdi-content-paste",
+            title: "Desa",
+            to: "/setup/desa",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kelompok",
+            to: "/setup/kelompok",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kepengurusan",
+            to: "/setup/kepengurusan",
+            roles: ["admin"],
+          },
+        ]
+      }
     ]
   }),
 };

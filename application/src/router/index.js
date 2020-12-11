@@ -20,6 +20,21 @@ const routes = [
     name: "Jamaah",
     component: () => import("../views/jamaah/Jamaah")
   },
+  {
+    path: "/setup/desa",
+    name: "Desa",
+    component: () => import("../views/setup/desa/Desa")
+  },
+  {
+    path: "/setup/kelompok",
+    name: "Kelompok",
+    component: () => import("../views/setup/kelompok/Kelompok")
+  },
+  {
+    path: "/setup/kepengurusan",
+    name: "Kepengurusan",
+    component: () => import("../views/setup/kepengurusan/Kepengurusan")
+  },
 ];
 
 const router = new VueRouter({

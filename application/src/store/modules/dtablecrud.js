@@ -31,14 +31,25 @@ const dtablecrud = {
             state.headers = headers;
         },
         setInput(state, input) {
-            state.labelItem = input;
+            state.inputs = input;
         },
         setEditedItem(state, item) {
             state.editedItem = item;
         },
         setDefaultItem(state, item) {
             state.defaultItem = item;
-        }
+        },
+        dtStateClear(state) {
+            state.title = '';
+            state.dataurl = '';
+            state.createurl = '';
+            state.updateurl = '';
+            state.deleteurl = '';
+            state.headers = [];
+            state.inputs = [];
+            state.editedItem = {};
+            state.defaultItem = {};
+        },
     },
     getters: {
         getTitle: state => state.title,

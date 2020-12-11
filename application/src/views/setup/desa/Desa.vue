@@ -15,20 +15,29 @@ export default {
   name: "Desa",
   components: {DatatableCRUD},
   methods: {
-    ...mapMutations('dtablecrud', ['setTitle', 'setDataUrl', 'setHeader', 'setInput', 'setEditedItem', 'setDefaultItem']),
+    ...mapMutations('dtablecrud', [
+        'setTitle',
+        'setDataUrl',
+        'setHeader',
+        'setInput',
+        'setEditedItem',
+        'setDefaultItem',
+        'dtStateClear',
+    ]),
     ...mapGetters('dtablecrud', ['getEditedItem']),
   },
   created() {
+    this.dtStateClear();
     this.setTitle('Desa');
     this.setDataUrl('/showStDesa');
     this.setHeader([
-      {text: 'Kode', value: 'id'},
-      {text: 'Deskripsi', value: 'nama'},
-      {text: 'Actions', value: 'actions', sortable: false},
+        {text: 'Kode', value: 'id'},
+        {text: 'Deskripsi', value: 'nama'},
+        {text: 'Actions', value: 'actions', sortable: false},
     ]);
-    // this.setInput([
-    //   {model: this.getEditedItem().}
-    // ]);
+    this.setInput([
+        {model: this.getEditedItem().nama, label: 'Deskripsi'},
+    ]);
     this.setEditedItem({nama: ''});
     this.setDefaultItem({nama: ''});
   }

@@ -25,9 +25,15 @@
             <v-card-text>
               <v-container>
                 <v-row>
-<!--                  <v-col v-for="" cols="12" sm="6" md="4">-->
-<!--                    <v-text-field v-model="editedItem.name" label="Name"></v-text-field>-->
-<!--                  </v-col>-->
+                  <v-col
+                      v-for="form in inputs"
+                      :key="form.label"
+                      cols="12"
+                      sm="6"
+                      md="4"
+                  >
+                    <v-text-field v-model=form.model v-bind:label=form.label></v-text-field>
+                  </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
@@ -78,6 +84,7 @@ export default {
     headers: [],
     items: [],
     search: '',
+    inputs: [],
     editedIndex: -1,
     loading: true,
   }),
@@ -95,12 +102,18 @@ export default {
     },
   },
   created() {
+    this.setInput();
     this.setHeader();
     this.initialize();
   },
   methods: {
     ...mapMutations('dtablecrud', ['setEditedItem', 'setDefaultItem']),
-    ...mapGetters('dtablecrud', ['getTitle', 'getDataUrl', 'getHeader', 'getDefaultItem']),
+    ...mapGetters('dtablecrud', ['getTitle', 'getDataUrl', 'getHeader', 'getInput', 'getDefaultItem']),
+
+    setInput() {
+      this.inputs = this.getInput();
+      console.log(this.inputs);
+    },
 
     setHeader() {
       this.headers = this.getHeader();

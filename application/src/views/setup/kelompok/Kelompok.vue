@@ -16,10 +16,19 @@ export default {
   name: "Kelompok",
   components: {DatatableCRUD},
   methods: {
-    ...mapMutations('dtablecrud', ['setTitle', 'setDataUrl', 'setHeader', 'setInput', 'setEditedItem', 'setDefaultItem']),
+    ...mapMutations('dtablecrud', [
+      'setTitle',
+      'setDataUrl',
+      'setHeader',
+      'setInput',
+      'setEditedItem',
+      'setDefaultItem',
+      'dtStateClear',
+    ]),
     ...mapGetters('dtablecrud', ['getEditedItem']),
   },
   created() {
+    this.dtStateClear();
     this.setTitle('Kelompok');
     this.setDataUrl('/showStKelompok');
     this.setHeader([

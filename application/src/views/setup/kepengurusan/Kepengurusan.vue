@@ -15,10 +15,19 @@ export default {
   name: "Kepengurusan",
   components: {DatatableCRUD},
   methods: {
-    ...mapMutations('dtablecrud', ['setTitle', 'setDataUrl', 'setHeader', 'setInput', 'setEditedItem', 'setDefaultItem']),
+    ...mapMutations('dtablecrud', [
+      'setTitle',
+      'setDataUrl',
+      'setHeader',
+      'setInput',
+      'setEditedItem',
+      'setDefaultItem',
+      'dtStateClear',
+    ]),
     ...mapGetters('dtablecrud', ['getEditedItem']),
   },
   created() {
+    this.dtStateClear();
     this.setTitle('Kepengurusan');
     this.setDataUrl('/showStKepengurusan');
     this.setHeader([

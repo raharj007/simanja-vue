@@ -8,14 +8,14 @@
       loading-text="Memuat... Mohon tunggu">
     <template v-slot:top>
       <v-toolbar flat>
-        <v-toolbar-title>Data {{ $store.state.dtablecrud.title }}</v-toolbar-title>
+        <v-toolbar-title>Data {{ title }}</v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="500px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-              Tambah Data {{ $store.state.dtablecrud.title }}
+              Tambah Data {{ title }}
             </v-btn>
           </template>
           <v-card>
@@ -23,19 +23,7 @@
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
             <v-card-text>
-              <v-container>
-                <v-row>
-                  <v-col
-                      v-for="form in inputs"
-                      :key="form.label"
-                      cols="12"
-                      sm="6"
-                      md="4"
-                  >
-                    <v-text-field v-model=form.model v-bind:label=form.label></v-text-field>
-                  </v-col>
-                </v-row>
-              </v-container>
+              <component v-bind:is="currentFormComponent" v-model="editedItem"></component>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -48,7 +36,7 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogDelete" max-width="500px">
+        <v-dialog v-model="dialogDelete" max-width="600px">
           <v-card>
             <v-card-title class="headline">Apakah anda yakin untuk menghapus data ini?</v-card-title>
             <v-card-actions>
@@ -74,24 +62,40 @@
 
 <script>
 import {data} from "@/repository/crudRepository";
-import {mapGetters, mapMutations} from "vuex";
+import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
+import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
 
 export default {
   name: "DatatableCRUD",
+  props: {
+    title: {type: String, default: ''},
+    dataUrl: {type: String, default: ''},
+    createUrl: {type: String, default: ''},
+    updateUrl: {type: String, default: ''},
+    form: {type: String, default: ''},
+    dtHeaders: {type: Array, default: () => {return []}},
+    dtEditedItem: {type: Object, default: () => {return {}}},
+    dtDefaultItem: {type: Object, default: () => {return {}}},
+  },
   data: () => ({
     dialog: false,
     dialogDelete: false,
+    currentForm: '',
     headers: [],
     items: [],
     search: '',
-    inputs: [],
     editedIndex: -1,
+    editedItem: {},
+    defaultItem: {},
     loading: true,
   }),
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? 'Tambah Data ' + this.getTitle() : 'Edit Data ' + this.getTitle();
-    }
+      return this.editedIndex === -1 ? 'Tambah Data ' + this.title : 'Edit Data ' + this.title;
+    },
+    currentFormComponent() {
+      return this.currentForm;
+    },
   },
   watch: {
     dialog(val) {
@@ -102,40 +106,48 @@ export default {
     },
   },
   created() {
-    this.setInput();
-    this.setHeader();
     this.initialize();
   },
+  mounted() {
+    this.setFormFromProps();
+    this.setHeaderFromProps();
+    this.setEditedItemFromProps();
+    this.setDefaultItemFromProps();
+  },
   methods: {
-    ...mapMutations('dtablecrud', ['setEditedItem', 'setDefaultItem']),
-    ...mapGetters('dtablecrud', ['getTitle', 'getDataUrl', 'getHeader', 'getInput', 'getDefaultItem']),
-
-    setInput() {
-      this.inputs = this.getInput();
-      console.log(this.inputs);
+    setFormFromProps() {
+      this.currentForm = this.form;
     },
 
-    setHeader() {
-      this.headers = this.getHeader();
+    setHeaderFromProps() {
+      this.headers = this.dtHeaders;
+    },
+
+    setEditedItemFromProps() {
+      this.editedItem = this.dtEditedItem;
+    },
+
+    setDefaultItemFromProps() {
+      this.defaultItem = this.dtDefaultItem;
     },
 
     async initialize() {
       this.loading = true;
-      let response = await data(this.getDataUrl());
+      let response = await data(this.dataUrl);
       if (!response.error) this.items = response.data;
       this.loading = false;
     },
 
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
-      this.setEditedItem(Object.assign({}, item));
+      this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
-      this.setEditedItem(Object.assign({}, item));
-      this.dialog = true;
+      this.editedItem = Object.assign({}, item);
+      this.dialogDelete = true;
     },
 
     deleteItemConfirm() {
@@ -146,7 +158,7 @@ export default {
     close() {
       this.dialog = false;
       this.$nextTick(() => {
-        this.setEditedItem(Object.assign({}, this.getDefaultItem()));
+        this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -154,7 +166,7 @@ export default {
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
-        this.setEditedItem(Object.assign({}, this.getDefaultItem()));
+        this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
     },
@@ -162,13 +174,17 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         //request edit data
-        Object.assign(this.items[this.editedIndex], this.getEditedItem());
+        Object.assign(this.items[this.editedIndex], this.editedItem);
       } else {
         //request create data
-        this.items.push(this.getEditedItem());
+        this.items.push(this.editedItem);
       }
       this.close();
     }
+  },
+  components: {
+    BaseSetupForm,
+    JamaahForm,
   }
 }
 </script>

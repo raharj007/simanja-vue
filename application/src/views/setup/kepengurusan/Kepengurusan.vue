@@ -2,7 +2,14 @@
   <v-container fill-height fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="12" md="12">
-        <DatatableCRUD />
+        <DatatableCRUD
+            :title="dt.title"
+            :data-url="dt.dataUrl"
+            :form="dt.form"
+            :dt-headers="dt.headers"
+            :dt-edited-item="dt.editedItem"
+            :dt-default-item="dt.defaultItem"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -10,34 +17,24 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
-import {mapMutations} from "vuex";
 
 export default {
   name: "Kepengurusan",
   components: {DatatableCRUD},
-  methods: {
-    ...mapMutations('dtablecrud', [
-      'setTitle',
-      'setDataUrl',
-      'setHeader',
-      'setInput',
-      'setEditedItem',
-      'setDefaultItem',
-      'dtStateClear',
-    ]),
-  },
-  created() {
-    this.dtStateClear();
-    this.setTitle('Kepengurusan');
-    this.setDataUrl('/showStKepengurusan');
-    this.setHeader([
-      {text: 'Kode', value: 'id'},
-      {text: 'Deskripsi', value: 'nama'},
-      {text: 'Actions', value: 'actions', sortable: false},
-    ]);
-    this.setEditedItem({nama: ''});
-    this.setDefaultItem({nama: ''});
-  }
+  data: () => ({
+    dt: {
+      title: 'Kepengurusan',
+      dataUrl: '/showStKepengurusan',
+      form: 'BaseSetupForm',
+      headers: [
+        {text: 'Kode', value: 'id'},
+        {text: 'Deskripsi', value: 'nama'},
+        {text: 'Actions', value: 'actions', sortable: false},
+      ],
+      editedItem: {nama: ''},
+      defaultItem: {nama: ''},
+    },
+  }),
 }
 </script>
 

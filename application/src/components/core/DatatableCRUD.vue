@@ -61,9 +61,10 @@
 </template>
 
 <script>
-import {data} from "@/repository/crudRepository";
+import {create, data, destroy, update} from "@/repository/crudRepository";
 import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
 import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
+import {mapMutations} from "vuex";
 
 export default {
   name: "DatatableCRUD",
@@ -72,6 +73,7 @@ export default {
     dataUrl: {type: String, default: ''},
     createUrl: {type: String, default: ''},
     updateUrl: {type: String, default: ''},
+    deleteUrl: {type: String, default: ''},
     form: {type: String, default: ''},
     dtHeaders: {type: Array, default: () => {return []}},
     dtEditedItem: {type: Object, default: () => {return {}}},
@@ -115,6 +117,8 @@ export default {
     this.setDefaultItemFromProps();
   },
   methods: {
+    ...mapMutations('app',['showSnackbar']),
+
     setFormFromProps() {
       this.currentForm = this.form;
     },
@@ -150,8 +154,21 @@ export default {
       this.dialogDelete = true;
     },
 
-    deleteItemConfirm() {
+    async deleteItemConfirm() {
       //request delete item
+      const response = await destroy(this.deleteUrl);
+      if (!response.error) {
+        this.showSnackbar({
+          message: 'Data berhasil dihapus!',
+          color: 'success',
+        });
+      } else {
+        this.showSnackbar({
+          message: response.message,
+          color: 'error',
+        });
+      }
+      await this.initialize();
       this.closeDelete();
     },
 
@@ -171,14 +188,39 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         //request edit data
-        Object.assign(this.items[this.editedIndex], this.editedItem);
+        // Object.assign(this.items[this.editedIndex], this.editedItem);
+        const response = await update(this.updateUrl, this.editedItem);
+        if (!response.error) {
+          this.showSnackbar({
+            message: 'Data berhasil diupdate!',
+            color: 'success',
+          });
+        } else {
+          this.showSnackbar({
+            message: response.message,
+            color: 'error',
+          });
+        }
       } else {
         //request create data
-        this.items.push(this.editedItem);
+        // this.items.push(this.editedItem);
+        const response = await create(this.createUrl, this.editedItem);
+        if (!response.error) {
+          this.showSnackbar({
+            message: 'Data berhasil disimpan!',
+            color: 'success',
+          });
+        } else {
+          this.showSnackbar({
+            message: response.message,
+            color: 'error',
+          });
+        }
       }
+      await this.initialize();
       this.close();
     }
   },

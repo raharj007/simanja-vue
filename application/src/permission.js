@@ -4,7 +4,7 @@ import {getInfo} from "@/repository/authRepository";
 
 function checkCredentials() {
   return new Promise(resolve => {
-    console.log("TOKEN",store.getters['auth/getToken'][1]);
+    // console.log("TOKEN",store.getters['auth/getToken'][1]);
     if (store.getters['auth/getToken']) {
       getInfo()
         .then( response => {

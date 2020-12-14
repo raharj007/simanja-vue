@@ -189,6 +189,7 @@ export default {
     },
 
     async save() {
+      console.log(this.editedItem);
       if (this.editedIndex > -1) {
         //request edit data
         // Object.assign(this.items[this.editedIndex], this.editedItem);

@@ -5,6 +5,9 @@
         <DatatableCRUD
             :title="dt.title"
             :data-url="dt.dataUrl"
+            :create-url="dt.createUrl"
+            :update-url="dt.updateUrl"
+            :delete-url="dt.deleteUrl"
             :form="dt.form"
             :dt-headers="dt.headers"
             :dt-edited-item="dt.editedItem"
@@ -25,6 +28,9 @@ export default {
     dt: {
       title: 'Kepengurusan',
       dataUrl: '/showStKepengurusan',
+      createUrl: '',
+      updateUrl: '',
+      deleteUrl: '',
       form: 'BaseSetupForm',
       headers: [
         {text: 'Kode', value: 'id'},

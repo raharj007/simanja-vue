@@ -52,6 +52,7 @@ export default {
         {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {
+        formIsValid: false,
         nik: '',
         nama: '',
         jenis_kelamin: '',
@@ -69,6 +70,7 @@ export default {
         st_status_jamaah_id: 0,
       },
       defaultItem: {
+        formIsValid: false,
         nik: '',
         nama: '',
         jenis_kelamin: '',

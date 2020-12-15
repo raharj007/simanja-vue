@@ -12,7 +12,7 @@
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="500px">
+        <v-dialog v-model="dialog" max-width="600px">
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
               Tambah Data {{ title }}
@@ -30,7 +30,7 @@
               <v-btn color="red darken-1" text @click="close">
                 Batal
               </v-btn>
-              <v-btn color="primary" text @click="save">
+              <v-btn :disabled="!formIsValid" color="primary" text @click="save">
                 Simpan
               </v-btn>
             </v-card-actions>
@@ -98,6 +98,9 @@ export default {
     currentFormComponent() {
       return this.currentForm;
     },
+    formIsValid() {
+      return this.editedItem.formIsValid;
+    }
   },
   watch: {
     dialog(val) {

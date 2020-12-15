@@ -37,8 +37,8 @@ export default {
         {text: 'Deskripsi', value: 'nama'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
-      editedItem: {nama: ''},
-      defaultItem: {nama: ''},
+      editedItem: {formIsValid: false, nama: ''},
+      defaultItem: {formIsValid: false, nama: ''},
     },
   }),
 }

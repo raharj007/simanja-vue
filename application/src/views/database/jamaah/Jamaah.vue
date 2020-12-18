@@ -27,8 +27,8 @@ export default {
   data: () => ({
     dt: {
       title: 'Jamaah',
-      dataUrl: '/showJamaah',
-      createUrl: '/createJamaah',
+      dataUrl: '/master/jamaah',
+      createUrl: '/master/jamaah/store',
       updateUrl: '',
       deleteUrl: '',
       form: 'JamaahForm',

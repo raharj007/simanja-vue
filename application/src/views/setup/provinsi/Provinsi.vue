@@ -22,20 +22,20 @@
 import DatatableCRUD from "@/components/core/DatatableCRUD";
 
 export default {
-  name: "Desa",
+  name: "Provinsi",
   components: {DatatableCRUD},
   data: () => ({
     dt: {
-      title: 'Desa',
-      dataUrl: '/setup/desa',
+      title: 'Provinsi',
+      dataUrl: '/setup/provinsi',
       createUrl: '',
       updateUrl: '',
       deleteUrl: '',
       form: 'BaseSetupForm',
       headers: [
-          {text: 'Kode', value: 'id'},
-          {text: 'Deskripsi', value: 'nama'},
-          {text: 'Actions', value: 'actions', sortable: false},
+        {text: 'Kode', value: 'id'},
+        {text: 'Deskripsi', value: 'nama'},
+        {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {formIsValid: false, nama: ''},
       defaultItem: {formIsValid: false, nama: ''},

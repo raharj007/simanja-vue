@@ -92,7 +92,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.getProfile());
+    // console.log(this.getProfile());
   },
   data: () => ({
     icon: "mdi-gas-station-outline",
@@ -138,14 +138,74 @@ export default {
           },
           {
             icon: "mdi-content-paste",
+            title: "Jenis Kegiatan",
+            to: "/setup/jenis-kegiatan",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kabupaten",
+            to: "/setup/kabupaten",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kategori Jamaah",
+            to: "/setup/kategori-jamaah",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kecamatan",
+            to: "/setup/kecamatan",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
             title: "Kelompok",
             to: "/setup/kelompok",
             roles: ["admin"],
           },
           {
             icon: "mdi-content-paste",
+            title: "Kelurahan",
+            to: "/setup/kelurahan",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
             title: "Kepengurusan",
             to: "/setup/kepengurusan",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Level",
+            to: "/setup/level",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Provinsi",
+            to: "/setup/provinsi",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Status Jamaah",
+            to: "/setup/status-jamaah",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Status Kehadiran",
+            to: "/setup/status-kehadiran",
+            roles: ["admin"],
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Tipe Mutasi",
+            to: "/setup/tipe-mutasi",
             roles: ["admin"],
           },
         ]

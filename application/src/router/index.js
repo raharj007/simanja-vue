@@ -21,6 +21,21 @@ const routes = [
     component: () => import("../views/database/jamaah/Jamaah")
   },
   {
+    path: "/data/kegiatan",
+    name: "Kegiatan",
+    component: () => import("../views/database/kegiatan/Kegiatan")
+  },
+  {
+    path: "/data/kelompok",
+    name: "Kelompok",
+    component: () => import("../views/database/kelompok/Kelompok")
+  },
+  {
+    path: "/data/kepengurusan",
+    name: "Kepengurusan",
+    component: () => import("../views/database/kepengurusan/Kepengurusan")
+  },
+  {
     path: "/setup/desa",
     name: "Desa",
     component: () => import("../views/setup/desa/Desa")

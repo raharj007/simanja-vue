@@ -112,15 +112,33 @@ export default {
         items: [
           {
             icon: "mdi-content-paste",
+            title: "Absensi",
+            to: "/data/absensi",
+            roles: ["admin", "user"]
+          },
+          {
+            icon: "mdi-content-paste",
             title: "Jamaah",
             to: "/data/jamaah",
             roles: ["admin", "user"]
           },
           {
             icon: "mdi-content-paste",
-            title: "Absensi",
-            to: "/data/absensi",
-            roles: ["admin"]
+            title: "Kegiatan",
+            to: "/data/kegiatan",
+            roles: ["admin", "user"]
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kelompok",
+            to: "/data/kelompok",
+            roles: ["admin", "user"]
+          },
+          {
+            icon: "mdi-content-paste",
+            title: "Kepengurusan",
+            to: "/data/kepengurusan",
+            roles: ["admin", "kepengurusan"]
           },
         ]
       },

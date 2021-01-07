@@ -141,7 +141,7 @@ export default {
     async initialize() {
       this.loading = true;
       let response = await data(this.dataUrl);
-      if (!response.error) this.items = response.data;
+      if (!response.error) this.items = response.data.data;
       this.loading = false;
     },
 

@@ -31,7 +31,7 @@ export default {
       createUrl: '/master/kepengurusan/store',
       updateUrl: '',
       deleteUrl: '',
-      form: 'JamaahForm',
+      form: 'KepengurusanForm',
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},

@@ -64,6 +64,9 @@
 import {create, data, destroy, update} from "@/repository/crudRepository";
 import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
 import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
+import KegiatanForm from "@/views/database/kegiatan/component/KegiatanForm";
+import KelompokForm from "@/views/database/kelompok/component/KelompokForm";
+import KepengurusanForm from "@/views/database/kepengurusan/component/KepengurusanForm";
 import {mapMutations} from "vuex";
 
 export default {
@@ -231,6 +234,9 @@ export default {
   components: {
     BaseSetupForm,
     JamaahForm,
+    KegiatanForm,
+    KelompokForm,
+    KepengurusanForm,
   }
 }
 </script>

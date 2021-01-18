@@ -31,7 +31,7 @@ export default {
       createUrl: '/master/kelompok/store',
       updateUrl: '',
       deleteUrl: '',
-      form: 'JamaahForm',
+      form: 'KelompokForm',
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},

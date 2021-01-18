@@ -31,7 +31,7 @@ export default {
       createUrl: '/master/kegiatan/store',
       updateUrl: '',
       deleteUrl: '',
-      form: 'JamaahForm',
+      form: 'KegiatanForm',
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'deskripsi'},

@@ -62,7 +62,6 @@
 
 <script>
 import {create, data, destroy, update} from "@/repository/crudRepository";
-import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
 import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
 import {mapMutations} from "vuex";
 
@@ -74,7 +73,7 @@ export default {
     createUrl: {type: String, default: ''},
     updateUrl: {type: String, default: ''},
     deleteUrl: {type: String, default: ''},
-    form: {type: String, default: ''},
+    form: {type: Object},
     dtHeaders: {type: Array, default: () => {return []}},
     dtEditedItem: {type: Object, default: () => {return {}}},
     dtDefaultItem: {type: Object, default: () => {return {}}},
@@ -147,19 +146,20 @@ export default {
 
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
+      this.editedItem = Object.assign({}, {...item,formIsValid: true});
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
+      console.log(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
 
     async deleteItemConfirm() {
       //request delete item
-      const response = await destroy(this.deleteUrl);
+      const response = await destroy(`${this.deleteUrl}/${this.editedItem.id}`);
       if (!response.error) {
         this.showSnackbar({
           message: 'Data berhasil dihapus!',
@@ -192,11 +192,8 @@ export default {
     },
 
     async save() {
-      console.log(this.editedItem);
       if (this.editedIndex > -1) {
-        //request edit data
-        // Object.assign(this.items[this.editedIndex], this.editedItem);
-        const response = await update(this.updateUrl, this.editedItem);
+        const response = await update(`${this.updateUrl}/${this.editedItem.id}`, this.editedItem);
         if (!response.error) {
           this.showSnackbar({
             message: 'Data berhasil diupdate!',
@@ -229,7 +226,6 @@ export default {
     }
   },
   components: {
-    BaseSetupForm,
     JamaahForm,
   }
 }

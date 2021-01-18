@@ -8,7 +8,6 @@ function checkCredentials() {
     if (store.getters['auth/getToken']) {
       getInfo()
         .then( response => {
-          console.log("PROFILE",response.data);
           store.commit("auth/setProfile", response.data);
           resolve(response.data);
         })

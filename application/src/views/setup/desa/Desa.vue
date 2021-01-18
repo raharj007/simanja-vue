@@ -1,5 +1,5 @@
 <template>
-  <v-container fill-height fluid>
+  <v-container fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="12" md="12">
         <DatatableCRUD
@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
 
 export default {
   name: "Desa",
@@ -28,10 +29,10 @@ export default {
     dt: {
       title: 'Desa',
       dataUrl: '/setup/desa',
-      createUrl: '',
-      updateUrl: '',
-      deleteUrl: '',
-      form: 'BaseSetupForm',
+      createUrl: '/setup/desa',
+      updateUrl: '/setup/desa',
+      deleteUrl: '/setup/desa',
+      form: BaseSetupForm,
       headers: [
           {text: 'Kode', value: 'id'},
           {text: 'Deskripsi', value: 'nama'},

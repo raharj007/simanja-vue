@@ -21,7 +21,7 @@
       </v-list-item-content>
     </v-list-item>
     <v-divider />
-    <v-list>
+    <v-list nav dense >
       <template>
         <div v-for="item in items" :key="item.title">
           <v-list-group

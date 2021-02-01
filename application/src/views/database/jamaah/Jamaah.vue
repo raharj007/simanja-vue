@@ -20,7 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
-
+import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
 export default {
   name: "Jamaah",
   components: {DatatableCRUD},
@@ -28,10 +28,10 @@ export default {
     dt: {
       title: 'Jamaah',
       dataUrl: '/master/jamaah',
-      createUrl: '/master/jamaah/store',
-      updateUrl: '',
-      deleteUrl: '',
-      form: 'JamaahForm',
+      createUrl: '/master/jamaah',
+      updateUrl: '/master/jamaah',
+      deleteUrl: '/master/jamaah',
+      form: JamaahForm,
       headers: [
         {text: 'NIK', value: 'nik'},
         {text: 'Nama', value: 'nama'},

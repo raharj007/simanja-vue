@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
 
 export default {
   name: "StatusKehadiran",
@@ -28,10 +29,10 @@ export default {
     dt: {
       title: 'StatusKehadiran',
       dataUrl: '/setup/status-kehadiran',
-      createUrl: '',
-      updateUrl: '',
-      deleteUrl: '',
-      form: 'BaseSetupForm',
+      createUrl: '/setup/status-kehadiran',
+      updateUrl: '/setup/status-kehadiran',
+      deleteUrl: '/setup/status-kehadiran',
+      form: BaseSetupForm,
       headers: [
         {text: 'Kode', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},

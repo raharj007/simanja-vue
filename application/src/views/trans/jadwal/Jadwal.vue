@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import JadwalForm from "@/views/trans/jadwal/component/JadwalForm";
 
 export default {
   name: "Jadwal",
@@ -31,9 +32,9 @@ export default {
       createUrl: '/trans/jadwal',
       updateUrl: '/trans/jadwal',
       deleteUrl: '/trans/jadwal',
-      form: '',
+      form: JadwalForm,
       headers: [
-        {text: 'Tanggal', value: 'tanggal'},
+        {text: 'Tanggal', value: 'ftanggal'},
         {text: 'Jam Mulai', value: 'jam_mulai'},
         {text: 'Jam Selesai', value: 'jam_selesai'},
         {text: 'Kegiatan', value: 'kegiatan'},
@@ -44,8 +45,20 @@ export default {
         {text: 'Peserta', value: 'peserta'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
-      editedItem: {formIsValid: false, nama: ''},
-      defaultItem: {formIsValid: false, nama: ''},
+      editedItem: {
+        formIsValid: false,
+        tanggal: '',
+        jam_mulai: '',
+        jam_selesai: '',
+        md_kegiatan_id: '',
+      },
+      defaultItem: {
+        formIsValid: false,
+        tanggal: '',
+        jam_mulai: '',
+        jam_selesai: '',
+        md_kegiatan_id: '',
+      },
     },
   }),
 }

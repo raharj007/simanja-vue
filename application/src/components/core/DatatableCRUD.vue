@@ -161,6 +161,7 @@ export default {
     },
 
     async deleteItemConfirm() {
+      this.closeDelete();
       //request delete item
       const response = await destroy(`${this.deleteUrl}/${this.editedItem.id}`);
       if (!response.error) {
@@ -175,7 +176,6 @@ export default {
         });
       }
       await this.initialize();
-      this.closeDelete();
     },
 
     close() {
@@ -195,6 +195,7 @@ export default {
     },
 
     async save() {
+      this.close();
       if (this.editedIndex > -1) {
         const response = await update(`${this.updateUrl}/${this.editedItem.id}`, this.editedItem);
         if (!response.error) {
@@ -225,7 +226,6 @@ export default {
         }
       }
       await this.initialize();
-      this.close();
     }
   },
   components: {

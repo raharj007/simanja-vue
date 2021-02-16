@@ -227,7 +227,25 @@ export default {
             roles: ["admin"],
           },
         ]
-      }
+      },
+      {
+        title: "Jadwal",
+        icon: "mdi-calendar-clock",
+        to: "/trans/jadwal",
+        roles: ["admin", "user"],
+      },
+      {
+        title: "Presensi",
+        icon: "mdi-calendar-check",
+        to: "/trans/presensi",
+        roles: ["admin", "user"],
+      },
+      {
+        title: "Kepengurusan",
+        icon: "mdi-file-tree",
+        to: "/trans/kepengurusan",
+        roles: ["admin", "user"],
+      },
     ]
   }),
 };

@@ -10,6 +10,7 @@ const routes = [
     name: "Login",
     component: () => import("../views/Login")
   },
+  //data
   {
     path: "/data/absensi",
     name: "Absensi",
@@ -35,6 +36,7 @@ const routes = [
     name: "Kepengurusan",
     component: () => import("../views/database/kepengurusan/Kepengurusan")
   },
+  //setup
   {
     path: "/setup/desa",
     name: "Desa",
@@ -99,6 +101,22 @@ const routes = [
     path: "/setup/tipe-mutasi",
     name: "TipeMutasi",
     component: () => import("../views/setup/tipemutasi/TipeMutasi")
+  },
+  //transaksi
+  {
+    path: "/trans/jadwal",
+    name: "TransJadwal",
+    component: () => import("../views/trans/jadwal/Jadwal")
+  },
+  {
+    path: "/trans/kepengurusan",
+    name: "TransKepengurusan",
+    component: () => import("../views/trans/kepengurusan/Kepengurusan")
+  },
+  {
+    path: "/trans/presensi",
+    name: "TransPresensi",
+    component: () => import("../views/trans/presensi/Presensi")
   },
 ];
 

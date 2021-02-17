@@ -62,10 +62,6 @@
 
 <script>
 import {create, data, destroy, update} from "@/repository/crudRepository";
-import JamaahForm from "@/views/database/jamaah/component/JamaahForm";
-import KegiatanForm from "@/views/database/kegiatan/component/KegiatanForm";
-import KelompokForm from "@/views/database/kelompok/component/KelompokForm";
-import KepengurusanForm from "@/views/database/kepengurusan/component/KepengurusanForm";
 import {mapMutations} from "vuex";
 
 export default {
@@ -155,7 +151,6 @@ export default {
 
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
-      console.log(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
@@ -228,12 +223,6 @@ export default {
       await this.initialize();
     }
   },
-  components: {
-    JamaahForm,
-    KegiatanForm,
-    KelompokForm,
-    KepengurusanForm,
-  }
 }
 </script>
 

@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import KepengurusanForm from "@/views/trans/kepengurusan/component/KepengurusanForm";
 
 export default {
   name: "Kepengurusan",
@@ -31,17 +32,25 @@ export default {
       createUrl: '/trans/kepengurusan',
       updateUrl: '/trans/kepengurusan',
       deleteUrl: '/trans/kepengurusan',
-      form: '',
+      form: KepengurusanForm,
       headers: [
         {text: 'NIK', value: 'md_jamaah_nik'},
         {text: 'Nama Jamaah', value: 'nama_jamaah'},
-        {text: 'Kepengurusan', value: 'nama'},
+        {text: 'Kepengurusan', value: 'nama_kepengurusan'},
         {text: 'Kategori', value: 'kategori'},
         {text: 'Level', value: 'level'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
-      editedItem: {formIsValid: false, nama: ''},
-      defaultItem: {formIsValid: false, nama: ''},
+      editedItem: {
+        formIsValid: false,
+        md_jamaah_nik: '',
+        md_kepengurusan_id: '',
+      },
+      defaultItem: {
+        formIsValid: false,
+        md_jamaah_nik: '',
+        md_kepengurusan_id: '',
+      },
     },
   }),
 }

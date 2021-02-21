@@ -63,17 +63,17 @@
       <v-col cols="12" sm="12" md="12">
         <v-text-field :rules="rules.required" :value="value.alamat" @input="setAlamat" label="Alamat" prepend-inner-icon="mdi-map-marker" outlined dense></v-text-field>
       </v-col>
-      <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="kelurahan" item-value="id" item-text="text" :value="value.st_kel_id" @input="setKelurahan" label="Kelurahan" outlined dense></v-select>
+      <v-col cols="12" sm="6" md="6">
+        <v-select :rules="rules.required" :items="provinsi" item-value="id" item-text="text" :value="value.st_provinsi_id" @input="setProvinsi" @change="provinsiChange" label="Provinsi" outlined dense></v-select>
       </v-col>
-      <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="kecamatan" item-value="id" item-text="text" :value="value.st_kec_id" @input="setKecamatan" label="Kecamatan" outlined dense></v-select>
+      <v-col cols="12" sm="6" md="6">
+        <v-select :rules="rules.required" :items="kabupaten" item-value="id" item-text="text" :value="value.st_kab_id" @input="setKabupaten" @change="kabupatenChange" label="Kabupaten" ref="selectedKab" outlined dense></v-select>
       </v-col>
-      <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="kabupaten" item-value="id" item-text="text" :value="value.st_kab_id" @input="setKabupaten" label="Kabupaten" outlined dense></v-select>
+      <v-col cols="12" sm="6" md="6">
+        <v-select :rules="rules.required" :items="kecamatan" item-value="id" item-text="text" :value="value.st_kec_id" @input="setKecamatan" @change="kecamatanChange" label="Kecamatan" ref="selectedKec" outlined dense></v-select>
       </v-col>
-      <v-col cols="12" sm="12" md="12">
-        <v-select :rules="rules.required" :items="provinsi" item-value="id" item-text="text" :value="value.st_provinsi_id" @input="setProvinsi" label="Provinsi" outlined dense></v-select>
+      <v-col cols="12" sm="6" md="6">
+        <v-select :rules="rules.required" :items="kelurahan" item-value="id" item-text="text" :value="value.st_kel_id" @input="setKelurahan" label="Kelurahan" ref="selectedKel" outlined dense></v-select>
       </v-col>
       <v-col cols="12" sm="4" md="4">
         <v-select :rules="rules.required" :items="kelompok" item-value="id" item-text="text" :value="value.md_kelompok_id" @input="setKelompok" label="Kelompok" outlined dense></v-select>
@@ -122,48 +122,63 @@ export default {
     }
   },
   created() {
-    this.renderSelectKelurahan();
-    this.renderSelectKecamatan();
-    this.renderSelectKabupaten();
     this.renderSelectProvinsi();
     this.renderSelectKelompok();
     this.renderSelectKategori();
     this.renderSelectStatus();
   },
   methods: {
-    async renderSelectKelurahan() {
-      let response = await data('/ref/kelurahan');
+    async renderSelectKelurahan(kec) {
+      let response = await data(`/ref/setup/kelurahan/${kec}`);
       if (!response.error) this.kelurahan = response.data.data;
     },
 
-    async renderSelectKecamatan() {
-      let response = await data('/ref/kecamatan');
+    async renderSelectKecamatan(kab) {
+      let response = await data(`/ref/setup/kecamatan/${kab}`);
       if (!response.error) this.kecamatan = response.data.data;
     },
 
-    async renderSelectKabupaten() {
-      let response = await data('/ref/kabupaten');
+    async renderSelectKabupaten(prov) {
+      let response = await data(`/ref/setup/kabupaten/${prov}`);
       if (!response.error) this.kabupaten = response.data.data;
     },
 
     async renderSelectProvinsi() {
-      let response = await data('/ref/provinsi');
+      let response = await data('/ref/setup/provinsi');
       if (!response.error) this.provinsi = response.data.data;
     },
 
     async renderSelectKelompok() {
-      let response = await data('/ref/kelompok');
+      let response = await data('/ref/master/kelompok');
       if (!response.error) this.kelompok = response.data.data;
     },
 
     async renderSelectKategori() {
-      let response = await data('/ref/kategori-jamaah');
+      let response = await data('/ref/setup/kategori-jamaah');
       if (!response.error) this.kategori = response.data.data;
     },
 
     async renderSelectStatus() {
-      let response = await data('/ref/status-jamaah');
+      let response = await data('/ref/setup/status-jamaah');
       if (!response.error) this.status = response.data.data;
+    },
+
+    provinsiChange() {
+      this.$refs['selectedKab'].reset();
+      this.$refs['selectedKec'].reset();
+      this.$refs['selectedKel'].reset();
+      this.renderSelectKabupaten(this.value.st_provinsi_id);
+    },
+
+    kabupatenChange() {
+      this.$refs['selectedKec'].reset();
+      this.$refs['selectedKel'].reset();
+      this.renderSelectKecamatan(this.value.st_kab_id);
+    },
+
+    kecamatanChange() {
+      this.$refs['selectedKel'].reset();
+      this.renderSelectKelurahan(this.value.st_kec_id);
     },
 
     checkIsValid() {

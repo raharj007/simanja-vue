@@ -146,12 +146,14 @@ export default {
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, {...item,formIsValid: true});
+      if (this.editedItem.nik !== undefined && this.editedItem.id === undefined) this.editedItem.id = this.editedItem.nik;
       this.dialog = true;
     },
 
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      if (this.editedItem.nik !== undefined && this.editedItem.id === undefined) this.editedItem.id = this.editedItem.nik;
       this.dialogDelete = true;
     },
 

@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="12" md="12">
-        <v-text-field type="number" :rules="rules.nik" counter maxlength="16" :value="value.nik" @input="setNIK" label="NIK" outlined dense></v-text-field>
+        <v-text-field type="number" :rules="rules.nik" counter maxlength="16" :value="value.nik" @input="setNIK" label="NIK" outlined dense :readonly="isNIKReadOnly"></v-text-field>
       </v-col>
       <v-col cols="12" sm="8" md="8">
         <v-text-field :rules="rules.required" :value="value.nama" @input="setNama" label="Nama" outlined dense></v-text-field>
@@ -58,7 +58,7 @@
         </v-dialog>
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-text-field :rules="rules.required" :value="value.hp" @input="setNoHp" label="No. Hp" outlined dense></v-text-field>
+        <v-text-field type="number" :rules="rules.required" counter maxlength="12" :value="value.hp" @input="setNoHp" label="No. Hp" outlined dense></v-text-field>
       </v-col>
       <v-col cols="12" sm="12" md="12">
         <v-text-field :rules="rules.required" :value="value.alamat" @input="setAlamat" label="Alamat" prepend-inner-icon="mdi-map-marker" outlined dense></v-text-field>
@@ -106,6 +106,11 @@ export default {
             value => value.length >= 16 || 'Minimal 16 karakter!',
             value => value.length <= 16 || 'Maksimal 16 karakter!',
         ],
+        hp: [
+          value => !!value || 'Kolom ini harus diisi!',
+          value => value.length >= 10 || 'Minimal 10 karakter!',
+          value => value.length <= 12 || 'Maksimal 12 karakter!',
+        ]
       },
       jenisKelamin: [
         {id: 'Laki-laki', text: 'Laki-laki'},
@@ -119,6 +124,11 @@ export default {
       kelompok: [],
       kategori: [],
       status: [],
+    }
+  },
+  computed: {
+    isNIKReadOnly() {
+      return this.value.id !== undefined;
     }
   },
   created() {

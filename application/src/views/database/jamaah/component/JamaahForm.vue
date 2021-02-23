@@ -61,6 +61,9 @@
         <v-text-field type="number" :rules="rules.required" counter maxlength="12" :value="value.hp" @input="setNoHp" label="No. Hp" outlined dense></v-text-field>
       </v-col>
       <v-col cols="12" sm="12" md="12">
+        <v-select :items="users" item-value="id" item-text="text" :value="value.users_id" @input="setUser" label="User" outlined dense></v-select>
+      </v-col>
+      <v-col cols="12" sm="12" md="12">
         <v-text-field :rules="rules.required" :value="value.alamat" @input="setAlamat" label="Alamat" prepend-inner-icon="mdi-map-marker" outlined dense></v-text-field>
       </v-col>
       <v-col cols="12" sm="6" md="6">
@@ -117,6 +120,7 @@ export default {
         {id: 'Perempuan', text: 'Perempuan'},
       ],
       tglLahir: false,
+      users: [],
       kelurahan: [],
       kecamatan: [],
       kabupaten: [],
@@ -132,12 +136,18 @@ export default {
     }
   },
   created() {
+    this.renderSelectUsers();
     this.renderSelectProvinsi();
     this.renderSelectKelompok();
     this.renderSelectKategori();
     this.renderSelectStatus();
   },
   methods: {
+    async renderSelectUsers() {
+      let response = await data('/ref/users');
+      if (!response.error) this.users = response.data.data;
+    },
+
     async renderSelectKelurahan(kec) {
       let response = await data(`/ref/setup/kelurahan/${kec}`);
       if (!response.error) this.kelurahan = response.data.data;
@@ -240,6 +250,11 @@ export default {
 
     setNoHp($event) {
       this.value.hp = $event;
+      return this.sendBack();
+    },
+
+    setUser($event) {
+      this.value.users_id = $event;
       return this.sendBack();
     },
 

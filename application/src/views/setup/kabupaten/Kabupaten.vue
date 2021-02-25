@@ -20,7 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
-import BaseSetupForm from "@/views/setup/component/BaseSetupForm";
+import KabupatenForm from "@/views/setup/kabupaten/component/KabupatenForm";
 
 export default {
   name: "Kabupaten",
@@ -32,15 +32,15 @@ export default {
       createUrl: '/setup/kabupaten',
       updateUrl: '/setup/kabupaten',
       deleteUrl: '/setup/kabupaten',
-      form: BaseSetupForm,
+      form: KabupatenForm,
       headers: [
         {text: 'Kode', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},
-        {text: 'Provinsi', value: 'propinsi'},
+        {text: 'Provinsi', value: 'provinsi'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
-      editedItem: {formIsValid: false, nama: ''},
-      defaultItem: {formIsValid: false, nama: ''},
+      editedItem: {formIsValid: false, nama: '', st_provinsi_id: ''},
+      defaultItem: {formIsValid: false, nama: '', st_provinsi_id: ''},
     },
   }),
 }

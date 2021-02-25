@@ -180,12 +180,6 @@ export default {
           },
           {
             icon: "mdi-content-paste",
-            title: "Kelompok",
-            to: "/setup/kelompok",
-            roles: ["admin"],
-          },
-          {
-            icon: "mdi-content-paste",
             title: "Kelurahan",
             to: "/setup/kelurahan",
             roles: ["admin"],

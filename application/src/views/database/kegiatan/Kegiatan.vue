@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import KegiatanForm from "@/views/database/kegiatan/component/KegiatanForm";
 
 export default {
   name: "Kegiatan",
@@ -28,38 +29,36 @@ export default {
     dt: {
       title: 'Kegiatan',
       dataUrl: '/master/kegiatan',
-      createUrl: '/master/kegiatan/store',
-      updateUrl: '',
-      deleteUrl: '',
-      form: 'KegiatanForm',
+      createUrl: '/master/kegiatan',
+      updateUrl: '/master/kegiatan',
+      deleteUrl: '/master/kegiatan',
+      form: KegiatanForm,
       headers: [
-        {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'deskripsi'},
-        {text: 'Level', value: 'level'},
         {text: 'Kelompok', value: 'kelompok'},
-        {text: 'Desa', value: 'desa'},
         {text: 'Jenis Kegiatan', value: 'jenis_kegiatan'},
-        {text: 'Peserta', value: 'peserta'},
+        {text: 'Kategori Jamaah', value: 'peserta'},
+        {text: 'Level', value: 'level'},
+        {text: 'Desa', value: 'desa'},
+        {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {
         formIsValid: false,
-        id: '',
         deskripsi: '',
-        st_level_id: '',
+        md_kelompok_id: '',
         st_jenis_kegiatan_id: '',
         st_kategori_jamaah_id: '',
+        st_level_id: '',
         st_desa_id: '',
-        md_kelompok_id: '',
       },
       defaultItem: {
         formIsValid: false,
-        id: '',
         deskripsi: '',
-        st_level_id: '',
+        md_kelompok_id: '',
         st_jenis_kegiatan_id: '',
         st_kategori_jamaah_id: '',
+        st_level_id: '',
         st_desa_id: '',
-        md_kelompok_id: '',
       },
     },
   }),

@@ -28,15 +28,16 @@ export default {
     dt: {
       title: 'Kelompok',
       dataUrl: '/master/kelompok',
-      createUrl: '/master/kelompok/store',
-      updateUrl: '',
-      deleteUrl: '',
+      createUrl: '/master/kelompok',
+      updateUrl: '/master/kelompok',
+      deleteUrl: 'master/kelompok',
       form: 'KelompokForm',
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},
         {text: 'Desa', value: 'desa'},
         {text: 'Alamat', value: 'alamat'},
+        {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {
         formIsValid: false,

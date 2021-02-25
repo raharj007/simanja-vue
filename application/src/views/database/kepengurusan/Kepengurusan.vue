@@ -28,15 +28,16 @@ export default {
     dt: {
       title: 'Kepengurusan',
       dataUrl: '/master/kepengurusan',
-      createUrl: '/master/kepengurusan/store',
-      updateUrl: '',
-      deleteUrl: '',
+      createUrl: '/master/kepengurusan',
+      updateUrl: '/master/kepengurusan',
+      deleteUrl: '/master/kepengurusan',
       form: 'KepengurusanForm',
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},
         {text: 'Kepengurusan', value: 'kepengurusan'},
         {text: 'Level', value: 'level'},
+        {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {
         formIsValid: false,

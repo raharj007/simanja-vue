@@ -63,11 +63,6 @@ const routes = [
     component: () => import("../views/setup/kecamatan/Kecamatan")
   },
   {
-    path: "/setup/kelompok",
-    name: "Kelompok",
-    component: () => import("../views/setup/kelompok/Kelompok")
-  },
-  {
     path: "/setup/kelurahan",
     name: "Kelurahan",
     component: () => import("../views/setup/kelurahan/Kelurahan")

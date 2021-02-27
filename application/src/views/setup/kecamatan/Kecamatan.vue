@@ -35,8 +35,9 @@ export default {
       form: KecamatanForm,
       headers: [
         {text: 'Kode', value: 'id'},
-        {text: 'Deskripsi', value: 'nama'},
+        {text: 'Provinsi', value: 'provinsi'},
         {text: 'Kabupaten', value: 'kabupaten'},
+        {text: 'Deskripsi', value: 'nama'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {formIsValid: false, nama: '', st_kab_id: ''},

@@ -35,8 +35,10 @@ export default {
       form: KelurahanForm,
       headers: [
         {text: 'Kode', value: 'id'},
-        {text: 'Deskripsi', value: 'nama'},
+        {text: 'Provinsi', value: 'provinsi'},
+        {text: 'Kabupaten', value: 'kabupaten'},
         {text: 'Kecamatan', value: 'kecamatan'},
+        {text: 'Deskripsi', value: 'nama'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {formIsValid: false, nama: '', st_kec_id: ''},

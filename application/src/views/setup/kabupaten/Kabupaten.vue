@@ -35,8 +35,8 @@ export default {
       form: KabupatenForm,
       headers: [
         {text: 'Kode', value: 'id'},
-        {text: 'Deskripsi', value: 'nama'},
         {text: 'Provinsi', value: 'provinsi'},
+        {text: 'Deskripsi', value: 'nama'},
         {text: 'Actions', value: 'actions', sortable: false},
       ],
       editedItem: {formIsValid: false, nama: '', st_provinsi_id: ''},

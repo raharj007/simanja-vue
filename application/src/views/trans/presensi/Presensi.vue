@@ -37,6 +37,8 @@ export default {
         {text: 'NIK', value: 'md_jamaah_nik'},
         {text: 'Nama Jamaah', value: 'nama_jamaah'},
         {text: 'Status Hadir', value: 'st_status_kehadiran_id'},
+        {text: 'Jam Mulai', value: 'jam_mulai'},
+        {text: 'Jam Selesai', value: 'jam_selesai'},
         {text: 'Jam Hadir', value: 'jam_kehadiran'},
         {text: 'Keterangan', value: 'keterangan'},
         {text: 'Actions', value: 'actions', sortable: false},

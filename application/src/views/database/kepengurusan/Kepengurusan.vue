@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import KepengurusanForm from "@/views/database/kepengurusan/component/KepengurusanForm";
 
 export default {
   name: "Kelompok",
@@ -31,7 +32,7 @@ export default {
       createUrl: '/master/kepengurusan',
       updateUrl: '/master/kepengurusan',
       deleteUrl: '/master/kepengurusan',
-      form: 'KepengurusanForm',
+      form: KepengurusanForm,
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},
@@ -41,14 +42,12 @@ export default {
       ],
       editedItem: {
         formIsValid: false,
-        id: '',
         nama: '',
         st_kepengurusan_id: '',
         st_level_id: '',
       },
       defaultItem: {
         formIsValid: false,
-        id: '',
         nama: '',
         st_kepengurusan_id: '',
         st_level_id: '',

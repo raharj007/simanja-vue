@@ -2,16 +2,16 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="12" md="12">
-        <v-text-field type="number" :rules="rules.id" counter maxlength="16" :value="value.id" @input="setID" label="ID" outlined dense></v-text-field>
+        <v-text-field :rules="rules.id" counter maxlength="5" :value="value.id" @input="setID" label="ID" outlined dense :readonly="isIDReadOnly"></v-text-field>
       </v-col>
       <v-col cols="12" sm="12" md="12">
         <v-text-field :rules="rules.required" :value="value.nama" @input="setNama" label="Deskripsi" outlined dense></v-text-field>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <v-select :rules="rules.required" :items="kepengurusan" item-value="id" item-text="text" :value="value.st_kepengurusan_id" @input="setKepengurusan" label="Kepengurusan" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="kepengurusan" item-value="id" item-text="text" :value="value.st_kepengurusan_id" @input="setKepengurusan" label="Kepengurusan" outlined dense :disabled="enkep"></v-select>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <v-select :rules="rules.required" :items="level" item-value="id" item-text="text" :value="value.st_level_id" @input="setLevel" label="Level" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="level" item-value="id" item-text="text" :value="value.st_level_id" @input="setLevel" label="Level" outlined dense :disabled="enlvl"></v-select>
       </v-col>
     </v-row>
   </v-container>
@@ -33,11 +33,18 @@ export default {
         id: [
           value => !!value || 'Kolom ini harus diisi!',
           value => value.length >= 3 || 'Minimal 3 karakter!',
-          value => value.length <= 16 || 'Maksimal 16 karakter!',
+          value => value.length <= 5 || 'Maksimal 5 karakter!',
         ],
       },
+      enkep: true,
+      enlvl: true,
       kepengurusan: [],
       level: [],
+    }
+  },
+  computed: {
+    isIDReadOnly() {
+      return this.value.id !== undefined;
     }
   },
   created() {
@@ -46,13 +53,19 @@ export default {
   },
   methods: {
     async renderSelectKepengurusan() {
-      let response = await data('/data');
-      if (!response.error) this.kepengurusan = response.data;
+      let response = await data('/ref/setup/kepengurusan');
+      if (!response.error) {
+        this.kepengurusan = response.data.data;
+        this.enkep = false;
+      }
     },
 
     async renderSelectLevel() {
-      let response = await data('/data');
-      if (!response.error) this.level = response.data;
+      let response = await data('/ref/setup/level');
+      if (!response.error) {
+        this.level = response.data.data;
+        this.enlvl = false;
+      }
     },
 
     checkIsValid() {

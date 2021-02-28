@@ -20,6 +20,7 @@
 
 <script>
 import DatatableCRUD from "@/components/core/DatatableCRUD";
+import KelompokForm from "@/views/database/kelompok/component/KelompokForm";
 
 export default {
   name: "Kelompok",
@@ -31,7 +32,7 @@ export default {
       createUrl: '/master/kelompok',
       updateUrl: '/master/kelompok',
       deleteUrl: 'master/kelompok',
-      form: 'KelompokForm',
+      form: KelompokForm,
       headers: [
         {text: 'ID', value: 'id'},
         {text: 'Deskripsi', value: 'nama'},
@@ -41,14 +42,12 @@ export default {
       ],
       editedItem: {
         formIsValid: false,
-        id: '',
         nama: '',
         st_desa_id: '',
         alamat: '',
       },
       defaultItem: {
         formIsValid: false,
-        id: '',
         nama: '',
         st_desa_id: '',
         alamat: '',

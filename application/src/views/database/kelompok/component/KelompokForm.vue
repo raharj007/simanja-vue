@@ -2,10 +2,10 @@
   <v-container>
     <v-row>
       <v-col cols="12" sm="8" md="8">
-        <v-text-field type="number" :rules="rules.id" counter maxlength="3" :value="value.id" @input="setID" label="ID" outlined dense></v-text-field>
+        <v-text-field :rules="rules.id" counter maxlength="3" :value="value.id" @input="setID" label="ID" outlined dense :readonly="isIDReadOnly"></v-text-field>
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="desa" item-value="id" item-text="text" :value="value.st_desa_id" @input="setDesa" label="Desa" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="desa" item-value="id" item-text="text" :value="value.st_desa_id" @input="setDesa" label="Desa" outlined dense :disabled="endes"></v-select>
       </v-col>
       <v-col cols="12" sm="12" md="12">
         <v-text-field :rules="rules.required" :value="value.nama" @input="setNama" label="Deskripsi" outlined dense></v-text-field>
@@ -36,16 +36,26 @@ export default {
           value => value.length <= 3 || 'Maksimal 3 karakter!',
         ],
       },
+      endes: true,
       desa: [],
     }
   },
+  computed: {
+    isIDReadOnly() {
+      return this.value.id !== undefined;
+    }
+  },
   created() {
+    console.log(this.value);
     this.renderSelectDesa();
   },
   methods: {
     async renderSelectDesa() {
-      let response = await data('/data');
-      if (!response.error) this.desa = response.data;
+      let response = await data('/ref/setup/desa');
+      if (!response.error) {
+        this.desa = response.data.data;
+        this.endes = false;
+      }
     },
 
     checkIsValid() {

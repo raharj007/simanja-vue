@@ -6,7 +6,7 @@ module.exports = {
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = "Sistem Management Jamaan (Simanja)";
+        args[0].title = "Sistem Management Jamaah (Simanja)";
         return args;
       })
   }

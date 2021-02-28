@@ -5,19 +5,19 @@
         <v-text-field :rules="rules.required" :value="value.deskripsi" @input="setDeskripsi" label="Deskripsi" outlined dense></v-text-field>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <v-select :rules="rules.required" :items="kelompok" item-value="id" item-text="text" :value="value.md_kelompok_id" @input="setKelompok" label="Kelompok" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="kelompok" item-value="id" item-text="text" :value="value.md_kelompok_id" @input="setKelompok" label="Kelompok" outlined dense :disabled="enkel"></v-select>
       </v-col>
       <v-col cols="12" sm="6" md="6">
-        <v-select :rules="rules.required" :items="kegiatan" item-value="id" item-text="text" :value="value.st_jenis_kegiatan_id" @input="setJenisKegiatan" label="Jenis Kegiatan" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="kegiatan" item-value="id" item-text="text" :value="value.st_jenis_kegiatan_id" @input="setJenisKegiatan" label="Jenis Kegiatan" outlined dense :disabled="enkeg"></v-select>
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="kategori" item-value="id" item-text="text" :value="value.st_kategori_jamaah_id" @input="setKategoriJamaah" label="Kategori Jamaah" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="kategori" item-value="id" item-text="text" :value="value.st_kategori_jamaah_id" @input="setKategoriJamaah" label="Kategori Jamaah" outlined dense :disabled="enkat"></v-select>
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="level" item-value="id" item-text="text" :value="value.st_level_id" @input="setLevel" label="Level" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="level" item-value="id" item-text="text" :value="value.st_level_id" @input="setLevel" label="Level" outlined dense :disabled="enlvl"></v-select>
       </v-col>
       <v-col cols="12" sm="4" md="4">
-        <v-select :rules="rules.required" :items="desa" item-value="id" item-text="text" :value="value.st_desa_id" @input="setDesa" label="Desa" outlined dense></v-select>
+        <v-select :rules="rules.required" :items="desa" item-value="id" item-text="text" :value="value.st_desa_id" @input="setDesa" label="Desa" outlined dense :disabled="endes"></v-select>
       </v-col>
     </v-row>
   </v-container>
@@ -37,6 +37,11 @@ export default {
       rules: {
         required: [value => !!value || 'Kolom ini harus diisi!'],
       },
+      enkel: true,
+      enkeg: true,
+      enkat: true,
+      enlvl: true,
+      endes: true,
       kelompok: [],
       kegiatan: [],
       kategori: [],
@@ -54,27 +59,42 @@ export default {
   methods: {
     async renderSelectKelompok() {
       let response = await data('/ref/master/kelompok');
-      if (!response.error) this.kelompok = response.data.data;
+      if (!response.error) {
+        this.kelompok = response.data.data;
+        this.enkel = false;
+      }
     },
 
     async renderSelectKegiatan() {
       let response = await data('/ref/setup/jenis-kegiatan');
-      if (!response.error) this.kegiatan = response.data.data;
+      if (!response.error) {
+        this.kegiatan = response.data.data;
+        this.enkeg = false;
+      }
     },
 
     async renderSelectKategori() {
       let response = await data('/ref/setup/kategori-jamaah');
-      if (!response.error) this.kategori = response.data.data;
+      if (!response.error) {
+        this.kategori = response.data.data;
+        this.enkat = false;
+      }
     },
 
     async renderSelectLevel() {
       let response = await data('/ref/setup/level');
-      if (!response.error) this.level = response.data.data;
+      if (!response.error) {
+        this.level = response.data.data;
+        this.enlvl = false;
+      }
     },
 
     async renderSelectDesa() {
       let response = await data('/ref/setup/desa');
-      if (!response.error) this.desa = response.data.data;
+      if (!response.error) {
+        this.desa = response.data.data;
+        this.endes = false;
+      }
     },
 
     checkIsValid() {

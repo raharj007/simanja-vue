@@ -4,7 +4,7 @@ import store from "../store";
 let development = process.env.NODE_ENV !== "production";
 
 export const BASE_URL = development
-  ? "http://localhost:8000"
+  ? "http://103.214.112.99:8000"
   : `${window.location.origin}`;
 export const API_ROOT = `${BASE_URL}/api`;
 const axiosInstance = axios.create({
